@@ -9,8 +9,7 @@ Backbone.Intercept = {
   },
 
   start: function(options) {
-    options = options || {};
-    options = _.defaults(options, this.defaults);
+    options = _.defaults(options || {}, this.defaults);
 
     if (options.links) {
       this._getBody().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
