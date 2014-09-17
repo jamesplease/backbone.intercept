@@ -1,6 +1,6 @@
 {
   "name": "backbone.intercept",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Automatically intercept links and forms in your Backbone applications.",
   "main": "dist/backbone.intercept.js",
   "scripts": {
