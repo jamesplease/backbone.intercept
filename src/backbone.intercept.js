@@ -4,8 +4,6 @@ Backbone.Intercept = {
 
   trigger: true,
 
-  navigateWith: Backbone.history,
-
   start: function(options) {
     options = options || {};
     options = _.defaults(options, this._defaults);
