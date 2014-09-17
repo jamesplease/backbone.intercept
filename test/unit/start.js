@@ -1,4 +1,8 @@
 describe('When calling start', function() {
+  beforeEach(function() {
+    this.sinon.stub(_, 'bind', _.identity);
+  });
+
   describe('and passing no options', function() {
     beforeEach(function() {
       this.$body = Backbone.Intercept._getBody();
@@ -7,10 +11,14 @@ describe('When calling start', function() {
     });
 
     it('should set handlers for click and submit events', function() {
+      expect(_.bind)
+        .to.have.been.calledTwice
+        .and.calledWithExactly(Backbone.Intercept._interceptLinks, Backbone.Intercept)
+        .and.calledWithExactly(Backbone.Intercept._interceptForms, Backbone.Intercept);
       expect(this.$body.on)
         .to.have.been.calledTwice
-        .and.calledWithExactly('click', 'a', Backbone.Intercept._interceptLinks)
-        .and.calledWithExactly('submit', Backbone.Intercept._interceptForms);
+        .and.calledWithExactly('click.backboneIntercept', 'a', Backbone.Intercept._interceptLinks)
+        .and.calledWithExactly('submit.backboneIntercept', Backbone.Intercept._interceptForms);
     });
   });
 
@@ -22,9 +30,12 @@ describe('When calling start', function() {
     });
 
     it('should only set handlers for link events', function() {
+      expect(_.bind)
+        .to.have.been.calledOnce
+        .and.calledWithExactly(Backbone.Intercept._interceptForms, Backbone.Intercept);
       expect(this.$body.on)
         .to.have.been.calledOnce
-        .and.calledWithExactly('submit', Backbone.Intercept._interceptForms);
+        .and.calledWithExactly('submit.backboneIntercept', Backbone.Intercept._interceptForms);
     });
   });
 
@@ -36,9 +47,12 @@ describe('When calling start', function() {
     });
 
     it('should only set handlers for link events', function() {
+      expect(_.bind)
+        .to.have.been.calledOnce
+        .and.calledWithExactly(Backbone.Intercept._interceptLinks, Backbone.Intercept);
       expect(this.$body.on)
         .to.have.been.calledOnce
-        .and.calledWithExactly('click', 'a', Backbone.Intercept._interceptLinks);
+        .and.calledWithExactly('click.backboneIntercept', 'a', Backbone.Intercept._interceptLinks);
     });
   });
 

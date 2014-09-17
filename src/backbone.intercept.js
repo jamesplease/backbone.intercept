@@ -13,16 +13,15 @@ Backbone.Intercept = {
     options = _.defaults(options, this.defaults);
 
     if (options.links) {
-      Backbone.Intercept._getBody().on('click', 'a', Backbone.Intercept._interceptLinks);
+      this._getBody().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
     }
     if (options.forms) {
-      Backbone.Intercept._getBody().on('submit', Backbone.Intercept._interceptForms);
+      this._getBody().on('submit.backboneIntercept', _.bind(this._interceptForms, this));
     }
   },
 
   stop: function() {
-    Backbone.Intercept._getBody().off('click', 'a', Backbone.Intercept._interceptLinks);
-    Backbone.Intercept._getBody().off('submit', Backbone.Intercept._interceptForms);
+    this._getBody().off('.backboneIntercept');
   },
 
   navigate: function(uri, options) {
@@ -45,7 +44,6 @@ Backbone.Intercept = {
   },
 
   _interceptLinks: function(e) {
-
     // Only intercept left-clicks
     if (e.which !== 1) { return; }
     var $link = $(e.currentTarget);
@@ -68,7 +66,7 @@ Backbone.Intercept = {
 
     // The options we pass along to navigate
     var navOptions = {
-      trigger: Backbone.Intercept.defaults.trigger
+      trigger: this.defaults.trigger
     };
 
     // Determine if it's trigger: false based on the attributes
@@ -93,7 +91,7 @@ Backbone.Intercept = {
     e.preventDefault();
 
     // Lastly we send off the information to the router
-    if (!Backbone.Intercept.navigate) { return; }
-    Backbone.Intercept.navigate(href, navOptions);
+    if (!this.navigate) { return; }
+    this.navigate(href, navOptions);
   }
 };
