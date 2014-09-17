@@ -55,7 +55,6 @@ Backbone.Intercept = {
     // Determine if we're supposed to bypass the link
     // based on its attributes
     var bypass = this._getAttr($link, 'bypass');
-
     if (bypass !== undefined && bypass !== 'false') {
       return;
     }
@@ -68,9 +67,9 @@ Backbone.Intercept = {
     // Determine if it's trigger: false based on the attributes
     var trigger = this._getAttr($link, 'trigger');
 
-    if (trigger !== undefined && trigger === 'false') {
+    if (trigger === 'false') {
       navOptions.trigger = false;
-    } else if (trigger !== undefined && trigger === 'true') {
+    } else if (trigger === 'true') {
       navOptions.trigger = true;
     }
 
