@@ -54,15 +54,11 @@ Backbone.Intercept = {
 
     // Determine if we're supposed to bypass the link
     // based on its attributes
-    var bypass;
-    var bypassAttr = $link.attr('bypass');
-    var dataBypassAttr = $link.attr('data-bypass');
-    if (bypassAttr !== undefined) {
-      bypass = bypassAttr;
-    } else if (dataBypassAttr !== undefined) {
-      bypass = dataBypassAttr;
+    var bypass = this._getAttr($link, 'bypass');
+
+    if (bypass !== undefined && bypass !== 'false') {
+      return;
     }
-    if (bypass !== undefined && bypass !== 'false') { return; }
 
     // The options we pass along to navigate
     var navOptions = {
@@ -70,14 +66,8 @@ Backbone.Intercept = {
     };
 
     // Determine if it's trigger: false based on the attributes
-    var trigger;
-    var triggerAttr = $link.attr('trigger');
-    var dataTriggerAttr = $link.attr('data-trigger');
-    if (triggerAttr !== undefined) {
-      trigger = triggerAttr;
-    } else if (dataTriggerAttr !== undefined) {
-      trigger = dataTriggerAttr;
-    }
+    var trigger = this._getAttr($link, 'trigger');
+
     if (trigger !== undefined && trigger === 'false') {
       navOptions.trigger = false;
     } else if (trigger !== undefined && trigger === 'true') {
@@ -92,5 +82,16 @@ Backbone.Intercept = {
 
     // Lastly we send off the information to the router
     this.navigate(href, navOptions);
+  },
+
+  _getAttr: function($el, name) {
+    var attr = $el.attr(name);
+    if (attr !== undefined) {
+      return attr;
+    }
+    var data = $el.attr('data-' + name);
+    if (data !== undefined) {
+      return data;
+    }
   }
 };
