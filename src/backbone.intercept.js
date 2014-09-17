@@ -91,7 +91,6 @@ Backbone.Intercept = {
     e.preventDefault();
 
     // Lastly we send off the information to the router
-    if (!this.navigate) { return; }
     this.navigate(href, navOptions);
   }
 };
