@@ -2,11 +2,15 @@ Backbone.Intercept = {
 
   VERSION: '<%= version %>',
 
-  trigger: true,
+  defaults: {
+    trigger : true,
+    links   : true,
+    forms   : true
+  },
 
   start: function(options) {
     options = options || {};
-    options = _.defaults(options, this._defaults);
+    options = _.defaults(options, this.defaults);
 
     if (options.links) {
       Backbone.Intercept._getBody().on('click', 'a', Backbone.Intercept._interceptLinks);
@@ -19,12 +23,6 @@ Backbone.Intercept = {
   stop: function() {
     Backbone.Intercept._getBody().off('click', 'a', Backbone.Intercept._interceptLinks);
     Backbone.Intercept._getBody().off('submit', Backbone.Intercept._interceptForms);
-  },
-
-  // By default we intercept both links and forms
-  _defaults: {
-    links: true,
-    forms: true
   },
 
   // Creates and caches a jQuery object for the body element
@@ -66,7 +64,7 @@ Backbone.Intercept = {
 
     // The options we pass along to navigate
     var navOptions = {
-      trigger: Backbone.Intercept.trigger
+      trigger: Backbone.Intercept.defaults.trigger
     };
 
     // Determine if it's trigger: false based on the attributes
