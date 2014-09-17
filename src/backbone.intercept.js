@@ -2,31 +2,29 @@ Backbone.Intercept = {
 
   VERSION: '<%= version %>',
 
-  trigger: true,
-
-  navigateWith: Backbone.history,
+  defaults: {
+    trigger : true,
+    links   : true,
+    forms   : true
+  },
 
   start: function(options) {
-    options = options || {};
-    options = _.defaults(options, this._defaults);
+    options = _.defaults(options || {}, this.defaults);
 
     if (options.links) {
-      Backbone.Intercept._getBody().on('click', 'a', Backbone.Intercept._interceptLinks);
+      this._getBody().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
     }
     if (options.forms) {
-      Backbone.Intercept._getBody().on('submit', Backbone.Intercept._interceptForms);
+      this._getBody().on('submit.backboneIntercept', _.bind(this._interceptForms, this));
     }
   },
 
   stop: function() {
-    Backbone.Intercept._getBody().off('click', 'a', Backbone.Intercept._interceptLinks);
-    Backbone.Intercept._getBody().off('submit', Backbone.Intercept._interceptForms);
+    this._getBody().off('.backboneIntercept');
   },
 
-  // By default we intercept both links and forms
-  _defaults: {
-    links: true,
-    forms: true
+  navigate: function(uri, options) {
+    Backbone.history.navigate(uri, options);
   },
 
   // Creates and caches a jQuery object for the body element
@@ -45,7 +43,6 @@ Backbone.Intercept = {
   },
 
   _interceptLinks: function(e) {
-
     // Only intercept left-clicks
     if (e.which !== 1) { return; }
     var $link = $(e.currentTarget);
@@ -56,33 +53,22 @@ Backbone.Intercept = {
 
     // Determine if we're supposed to bypass the link
     // based on its attributes
-    var bypass;
-    var bypassAttr = $link.attr('bypass');
-    var dataBypassAttr = $link.attr('data-bypass');
-    if (bypassAttr !== undefined) {
-      bypass = bypassAttr;
-    } else if (dataBypassAttr !== undefined) {
-      bypass = dataBypassAttr;
+    var bypass = this._getAttr($link, 'bypass');
+    if (bypass !== undefined && bypass !== 'false') {
+      return;
     }
-    if (bypass !== undefined && bypass !== 'false') { return; }
 
     // The options we pass along to navigate
     var navOptions = {
-      trigger: Backbone.Intercept.trigger
+      trigger: this.defaults.trigger
     };
 
     // Determine if it's trigger: false based on the attributes
-    var trigger;
-    var triggerAttr = $link.attr('trigger');
-    var dataTriggerAttr = $link.attr('data-trigger');
-    if (triggerAttr !== undefined) {
-      trigger = triggerAttr;
-    } else if (dataTriggerAttr !== undefined) {
-      trigger = dataTriggerAttr;
-    }
-    if (trigger !== undefined && trigger === 'false') {
+    var trigger = this._getAttr($link, 'trigger');
+
+    if (trigger === 'false') {
       navOptions.trigger = false;
-    } else if (trigger !== undefined && trigger === 'true') {
+    } else if (trigger === 'true') {
       navOptions.trigger = true;
     }
 
@@ -93,11 +79,17 @@ Backbone.Intercept = {
     e.preventDefault();
 
     // Lastly we send off the information to the router
-    if (!Backbone.Intercept.navigate) { return; }
-    Backbone.Intercept.navigate(href, navOptions);
+    this.navigate(href, navOptions);
   },
 
-  navigate: function(uri, options) {
-    Backbone.history.navigate(uri, options);
+  _getAttr: function($el, name) {
+    var attr = $el.attr(name);
+    if (attr !== undefined) {
+      return attr;
+    }
+    var data = $el.attr('data-' + name);
+    if (data !== undefined) {
+      return data;
+    }
   }
 };

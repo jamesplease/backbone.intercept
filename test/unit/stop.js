@@ -7,8 +7,7 @@ describe('When calling stop', function() {
 
   it('should remove all listeners', function() {
     expect(this.$body.off)
-      .to.have.been.calledTwice
-      .and.calledWithExactly('click', 'a', Backbone.Intercept._interceptLinks)
-      .and.calledWithExactly('submit', Backbone.Intercept._interceptForms);
+      .to.have.been.calledOnce
+      .and.calledWithExactly('.backboneIntercept');
   });
 });
