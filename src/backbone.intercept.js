@@ -25,6 +25,10 @@ Backbone.Intercept = {
     Backbone.Intercept._getBody().off('submit', Backbone.Intercept._interceptForms);
   },
 
+  navigate: function(uri, options) {
+    Backbone.history.navigate(uri, options);
+  },
+
   // Creates and caches a jQuery object for the body element
   _getBody: function() {
     if (this._body) { return this._body; }
@@ -91,9 +95,5 @@ Backbone.Intercept = {
     // Lastly we send off the information to the router
     if (!Backbone.Intercept.navigate) { return; }
     Backbone.Intercept.navigate(href, navOptions);
-  },
-
-  navigate: function(uri, options) {
-    Backbone.history.navigate(uri, options);
   }
 };
