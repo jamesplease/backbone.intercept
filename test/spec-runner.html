@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Backbone.Intercept Tests</title>
+
+  <link rel='stylesheet' href='../node_modules/mocha/mocha.css' />
+
+  <!-- Load testing tools -->
+  <script src='../node_modules/mocha/mocha.js'></script>
+  <script src='../node_modules/chai/chai.js'></script>
+  <script src='../node_modules/sinon/pkg/sinon.js'></script>
+  <script src='../node_modules/sinon-chai/lib/sinon-chai.js'></script>
+
+  <!-- Load any dependencies -->
+  <script src='../bower_components/jquery/dist/jquery.js'></script>
+  <script src='../bower_components/underscore/underscore.js'></script>
+  <script src='../bower_components/backbone/backbone.js'></script>
+  <script src='../bower_components/backbone.radio/build/backbone.radio.js'></script>
+
+  <!-- Load the library -->
+  <script src='../src/backbone.intercept.js'></script>
+
+  <!-- Setup tests -->
+  <script src='setup/helpers.js'></script>
+
+  <!-- Load the test specs -->
+  <script src='unit/start.js'></script>
+  <script src='unit/stop.js'></script>
+  <script src='unit/clicks.js'></script>
+  <script src='unit/navigate.js'></script>
+  <script src='unit/forms.js'></script>
+</head>
+<body>
+  <!-- Required for browser reporter -->
+  <div id='mocha'></div>
+  <div id='fixtures'></div>
+</body>
+</html>
