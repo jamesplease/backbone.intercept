@@ -14,6 +14,7 @@ var sinonChai = require('sinon-chai');
 global.$ = require('jquery');
 global._ = require('underscore');
 global.Backbone = require('backbone');
+global.Backbone.$ = global.$;
 global.Radio = require('backbone.radio');
 
 chai.use(sinonChai);

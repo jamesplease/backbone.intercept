@@ -32,7 +32,7 @@ Backbone.Intercept = {
   // Creates and caches a jQuery object for the body element
   _getBody: function() {
     if (this._body) { return this._body; }
-    this._body = $('body');
+    this._body = Backbone.$('body');
     return this._body;
   },
 
@@ -48,7 +48,7 @@ Backbone.Intercept = {
 
     // Only intercept left-clicks
     if (e.which !== 1) { return; }
-    var $link = $(e.currentTarget);
+    var $link = Backbone.$(e.currentTarget);
 
     // Get the href; stop processing if there isn't one
     var href = $link.attr('href');
