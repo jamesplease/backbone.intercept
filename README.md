@@ -23,7 +23,6 @@ var MyView = Backbone.View.extend({
 
   onClick: function(e) {
     e.preventDefault();
-    // custom link click logic
     myRouter.navigate($(e.currentTarget).attr('href'));
   },
 
@@ -36,12 +35,7 @@ var MyView = Backbone.View.extend({
 // after Backbone.Intercept
 var MyView = Backbone.View.extend({
   events: {
-    'click a': 'onClick',
     'submit form': 'onSubmit'
-  },
-
-  onClick: function(e) {
-    // link click logic
   },
 
   onSubmit: function(e) {
