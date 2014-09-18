@@ -2,12 +2,13 @@
 
 [![Travis Build Status](http://img.shields.io/travis/jmeas/backbone.intercept.svg?style=flat)](https://travis-ci.org/jmeas/backbone.intercept)
 
-Backbone.Intercept lets you stop writing `e.preventDefault()` in your DOM event callbacks.
+Backbone.Intercept intelligently manages link clicks and form submissions in Backbone applications.
 
 ### About
 
-The default action of form submissions and link clicks is often undesirable in Backbone applications. One would usually rather handle these events in Backbone.history, and maybe also in a callback specified on a Router. Backbone doesn't prevent
-the default action of these DOM events, but Backbone.Intercept does.
+The default action of form submissions and link clicks is often undesirable in Backbone applications. One
+would usually rather prevent that default behavior, then handle those through Backbone.history and possibly also
+in a Router's callback. Backbone doesn't do any of this for you, but Backbone.Intercept does.
 
 If you're writing `e.preventDefault()` in many of your view's event callbacks – or otherwise handling this problem on a per-view
 basis – then Backbone.Intercept might be what you're looking for.
@@ -22,7 +23,8 @@ var MyView = Backbone.View.extend({
 
   onClick: function(e) {
     e.preventDefault();
-    // link click logic
+    // custom link click logic
+    myRouter.navigate($(e.currentTarget).attr('href'));
   },
 
   onSubmit: function(e) {
@@ -70,8 +72,8 @@ app.on('start', Backbone.Intercept.start);
 
 #### Default Behavior
 
-For the most part, links with relative URIs will be intercepted, whereas absolute URIs will be ignored by Backbone.Intercept.
-Let's look at a few examples to get a better sense of this default behavior.
+In general, links with relative URIs will be intercepted, whereas absolute URIs will be ignored by Backbone.Intercept.
+A few examples will best illustrate the default behavior of Intercept.
 
 ```js
 // The following URIs will be intercepted
@@ -89,7 +91,7 @@ Let's look at a few examples to get a better sense of this default behavior.
 #### Navigation
 
 By default your intercepted links will be sent along to `Backbone.history.navigate` to be processed. You can customize this
-by overriding the `navigate` method on Backbone.Intercept. By doing this, you could make Intercept work with a Router instead,
+by overriding the `navigate` method on Backbone.Intercept. By doing this you could make Intercept work with a Router instead,
 or integrate other libraries like [Backbone.Radio](https://github.com/marionettejs/backbone.radio).
 
 ```js
@@ -139,11 +141,11 @@ This behavior can be changed by setting custom attributes on the element.
 
 #### Setting Global Link Trigger Behavior
 
-You can set the default trigger behavior by specifying it directly on Backbone.Intercept.
+You can set the default trigger behavior by specifying it directly on the Backbone.Intercept `defaults` option.
 
 ```js
 // Let's set the trigger setting to false by default
-Backbone.Intercept.trigger = false;
+Backbone.Intercept.defaults.trigger = false;
 ```
 
 ### Forms
@@ -167,17 +169,20 @@ no integration of forms with a Router.
 
 The version of Backbone.Intercept.
 
-##### `trigger`  
-default: `true`
+##### `defaults`
 
-The default value of the `trigger` option that's ultimately passed along to the Router's `navigate` method. The value
-of the `trigger` or `data-trigger` attribute on the anchor tag itself will always trump this value.
+An object for the default values for the router. There are three properties in defaults, `links`, `forms`, and `trigger`,
+and all three are `true` out-of-the-box. The first two options determine if Intercept handles links and forms, respectively. The
+`trigger` option determines if intercepted links pass `trigger:true` by default.
+
+The value of the `trigger` or `data-trigger` attribute on the anchor tag itself will always trump the value of the
+value of `trigger` in the `defaults` hash.
 
 ### Methods
 
 ##### `start( [options] )`
 
-Starts Backbone.Intercept. You can pass options to turn off either link or form interception.
+Starts Backbone.Intercept. You can pass `options` as an argument to override the `defaults` property.
 
 ```js
 // In this app we will only intercept forms
