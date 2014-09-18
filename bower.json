@@ -1,17 +1,22 @@
 {
   "name": "backbone.intercept",
   "main": "dist/backbone.intercept.js",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "homepage": "https://github.com/jmeas/backbone.intercept",
   "authors": [
     "Jmeas <jellyes2@gmail.com>"
   ],
-  "description": "Automatically intercept links and forms in your Backbone applications.",
+  "description": "Automatically manage link clicks and form submissions in your Backbone applications.",
   "keywords": [
     "backbone",
     "marionette",
     "link",
     "links",
+    "click",
+    "router",
+    "route",
+    "routes",
+    "history",
     "anchor",
     "intercept",
     "forms",

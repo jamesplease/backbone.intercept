@@ -1,7 +1,7 @@
 {
   "name": "backbone.intercept",
-  "version": "0.1.1",
-  "description": "Automatically intercept links and forms in your Backbone applications.",
+  "version": "0.2.0",
+  "description": "Automatically manage link clicks and form submissions in your Backbone applications.",
   "main": "dist/backbone.intercept.js",
   "scripts": {
     "test": "grunt"
@@ -15,6 +15,11 @@
     "marionette",
     "link",
     "links",
+    "click",
+    "router",
+    "route",
+    "routes",
+    "history",
     "anchor",
     "intercept",
     "forms",
