@@ -53,6 +53,10 @@ bower install backbone.intercept
 npm install backbone.intercept
 ```
 
+#### Dependencies
+
+Backbone.Intercept depends on Underscore, Backbone and a jQuery-like API on the `Backbone.$` object.
+
 ## Getting Started
 
 Getting started is easy. Simply call `Backbone.Intercept.start()` when your application is started up. If
