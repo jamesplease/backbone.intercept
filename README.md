@@ -2,7 +2,7 @@
 
 [![Travis Build Status](http://img.shields.io/travis/jmeas/backbone.intercept.svg?style=flat)](https://travis-ci.org/jmeas/backbone.intercept)
 
-Backbone.Intercept intelligently manages link clicks and form submissions in Backbone applications.
+Backbone.Intercept intelligently manages link clicks and form submissions across Backbone applications.
 
 ### About
 
@@ -158,6 +158,14 @@ no integration of forms with a Router.
 <!-- But this one will not -->
 <form action='post'></form>
 ```
+
+### When Not To Use Backbone.Intercept
+
+Backbone.Intercept works best in an application that is wholly Backbone. However, not every application
+has this property. Often times people will inject Backbone components into a page that contains other,
+non-Backbone code.
+
+In those situations it is probably more desirable to manage link-clicks on a per-view basis.
 
 ## API
 
