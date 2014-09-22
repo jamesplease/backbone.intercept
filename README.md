@@ -2,7 +2,7 @@
 
 [![Travis Build Status](http://img.shields.io/travis/jmeas/backbone.intercept.svg?style=flat)](https://travis-ci.org/jmeas/backbone.intercept)
 
-Backbone.Intercept intelligently manages link clicks and form submissions across Backbone applications.
+Backbone.Intercept intelligently manages link clicks and form submissions within Backbone applications.
 
 ### About
 
@@ -56,6 +56,27 @@ npm install backbone.intercept
 #### Dependencies
 
 Backbone.Intercept depends on Underscore, Backbone and a jQuery-like API on the `Backbone.$` object.
+
+### Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Links](#links)
+    - [Default Behavior](#default-behavior)
+    - [Navigation](#navigation)
+    - [Customizing the Behavior Per-Link](#customizing-the-behavior-per-link)
+    - [Setting Global Link Trigger Behavior](#setting-global-link-trigger-behavior)
+  - [Forms](#forms)
+  - [Setting the Root Element of Backbone.Intercept](#setting-the-root-element-of-backboneintercept)
+  - [When Not to Use Backbone.Intercept](#when-not-to-use-backboneintercept)
+- [API](#api)
+  - [Properties](#properties)
+    - [`VERSION`](#version)
+    - [`rootSelector`](#rootselector)
+    - [`defaults`](#defaults)
+  - [Methods](#methods)
+    - [`start()`](#start-options-)
+    - [`stop()`](#stop)
+    - [`navigate()`](#navigate-uri-options-)
 
 ## Getting Started
 
