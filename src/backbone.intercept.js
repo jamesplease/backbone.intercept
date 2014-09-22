@@ -2,6 +2,8 @@ Backbone.Intercept = {
 
   VERSION: '<%= version %>',
 
+  rootSelector: 'body',
+
   defaults: {
     trigger : true,
     links   : true,
@@ -12,15 +14,15 @@ Backbone.Intercept = {
     options = _.defaults(options || {}, this.defaults);
 
     if (options.links) {
-      this._getBody().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
+      this._getRootElement().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
     }
     if (options.forms) {
-      this._getBody().on('submit.backboneIntercept', _.bind(this._interceptForms, this));
+      this._getRootElement().on('submit.backboneIntercept', _.bind(this._interceptForms, this));
     }
   },
 
   stop: function() {
-    this._getBody().off('.backboneIntercept');
+    this._getRootElement().off('.backboneIntercept');
   },
 
   navigate: function(uri, options) {
@@ -28,9 +30,9 @@ Backbone.Intercept = {
   },
 
   // Creates and caches a jQuery object for the body element
-  _getBody: function() {
+  _getRootElement: function() {
     if (this._body) { return this._body; }
-    this._body = Backbone.$('body');
+    this._body = Backbone.$(this.rootSelector);
     return this._body;
   },
 

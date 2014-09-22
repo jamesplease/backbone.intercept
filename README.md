@@ -159,13 +159,23 @@ no integration of forms with a Router.
 <form action='post'></form>
 ```
 
+### Setting the Root Element of Backbone.Intercept
+
+Backbone.Intercept will intercept links and forms on the `body` on the page, but this can be customized by setting the
+`rootSelector` property.
+
+```js
+Backbone.Intercept.rootSelector = '.backbone-app';
+```
+
+This is useful for webapps where Backbone might not be the only library running on the page.
+
 ### When Not To Use Backbone.Intercept
 
-Backbone.Intercept works best in an application that is wholly Backbone. However, not every application
-has this property. Often times people will inject Backbone components into a page that contains other,
-non-Backbone code.
-
-In those situations it is probably more desirable to manage link-clicks on a per-view basis.
+Backbone.Intercept works best in an application that is entirely controlled by Backbone. Of course, not
+every project is like this. It's not uncommon for there to be Backbone components on a page that is otherwise
+not Backbone. In those situations it is likely a better choice to manage link clicks and form
+submissions on a per-view basis.
 
 ## API
 
@@ -174,6 +184,10 @@ In those situations it is probably more desirable to manage link-clicks on a per
 ##### `VERSION`
 
 The version of Backbone.Intercept.
+
+##### `rootSelector`
+
+A query selector for the root element of Intercept. Defaults to `'body'`.
 
 ##### `defaults`
 

@@ -5,7 +5,7 @@ describe('When calling start', function() {
 
   describe('and passing no options', function() {
     beforeEach(function() {
-      this.$body = Backbone.Intercept._getBody();
+      this.$body = Backbone.Intercept._getRootElement();
       this.sinon.stub(this.$body, 'on');
       Backbone.Intercept.start();
     });
@@ -24,7 +24,7 @@ describe('When calling start', function() {
 
   describe('and specifying false for links', function() {
     beforeEach(function() {
-      this.$body = Backbone.Intercept._getBody();
+      this.$body = Backbone.Intercept._getRootElement();
       this.sinon.stub(this.$body, 'on');
       Backbone.Intercept.start({links: false});
     });
@@ -41,7 +41,7 @@ describe('When calling start', function() {
 
   describe('and specifying false for forms', function() {
     beforeEach(function() {
-      this.$body = Backbone.Intercept._getBody();
+      this.$body = Backbone.Intercept._getRootElement();
       this.sinon.stub(this.$body, 'on');
       Backbone.Intercept.start({forms: false});
     });
@@ -58,7 +58,7 @@ describe('When calling start', function() {
 
   describe('and specifying false for links and forms', function() {
     beforeEach(function() {
-      this.$body = Backbone.Intercept._getBody();
+      this.$body = Backbone.Intercept._getRootElement();
       this.sinon.stub(this.$body, 'on');
       Backbone.Intercept.start({forms: false, links: false});
     });
