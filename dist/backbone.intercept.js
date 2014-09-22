@@ -1,4 +1,4 @@
-// Backbone.Intercept v0.2.0
+// Backbone.Intercept v0.3.0
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['backbone', 'underscore'], function(Backbone, _) {
@@ -18,7 +18,9 @@
 
   Backbone.Intercept = {
   
-    VERSION: '0.2.0',
+    VERSION: '0.3.0',
+  
+    rootSelector: 'body',
   
     defaults: {
       trigger : true,
@@ -30,15 +32,15 @@
       options = _.defaults(options || {}, this.defaults);
   
       if (options.links) {
-        this._getBody().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
+        this._getRootElement().on('click.backboneIntercept', 'a', _.bind(this._interceptLinks, this));
       }
       if (options.forms) {
-        this._getBody().on('submit.backboneIntercept', _.bind(this._interceptForms, this));
+        this._getRootElement().on('submit.backboneIntercept', _.bind(this._interceptForms, this));
       }
     },
   
     stop: function() {
-      this._getBody().off('.backboneIntercept');
+      this._getRootElement().off('.backboneIntercept');
     },
   
     navigate: function(uri, options) {
@@ -46,9 +48,9 @@
     },
   
     // Creates and caches a jQuery object for the body element
-    _getBody: function() {
+    _getRootElement: function() {
       if (this._body) { return this._body; }
-      this._body = $('body');
+      this._body = Backbone.$(this.rootSelector);
       return this._body;
     },
   
@@ -63,7 +65,7 @@
     _interceptLinks: function(e) {
       // Only intercept left-clicks
       if (e.which !== 1) { return; }
-      var $link = $(e.currentTarget);
+      var $link = Backbone.$(e.currentTarget);
   
       // Get the href; stop processing if there isn't one
       var href = $link.attr('href');
