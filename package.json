@@ -1,6 +1,6 @@
 {
   "name": "backbone.intercept",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Automatically manage link clicks and form submissions within Backbone applications.",
   "main": "dist/backbone.intercept.js",
   "scripts": {
