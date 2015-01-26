@@ -1,3 +1,15 @@
+// Adds elements to the document
+var setFixtures = function () {
+  _.each(arguments, function (content) {
+    helpers.$fixtures.append(content);
+  });
+};
+
+// Empties our body
+var clearFixtures = function () {
+  helpers.$fixtures.empty();
+};
+
 function setupTestHelpers() {
   beforeEach(function() {
     this.originalIntercept = _.clone(Backbone.Intercept);
@@ -22,22 +34,6 @@ var helpers = {};
 
 var node = typeof exports !== 'undefined';
 var $ = node ? require('jquery') : $;
-
-// Adds elements to the document
-var setFixtures = function () {
-  _.each(arguments, function (content) {
-    helpers.$fixtures.append(content);
-  });
-};
-
-// Empties our body
-var clearFixtures = function () {
-  helpers.$fixtures.empty();
-};
-
-var preventDefault = function(e) {
-  e.preventDefault();
-};
 
 if (node) {
   helpers.$fixtures = $('body');

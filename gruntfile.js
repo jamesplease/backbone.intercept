@@ -80,8 +80,21 @@ module.exports = function(grunt) {
           'test/unit/*.js'
         ]
       }
+    },
+
+    connect: {
+      options: {
+        port: 8000,
+        keepalive: true
+      },
+      browser: {}
     }
   });
+
+  grunt.registerTask('test:browser', 'Test the library in the browser', [
+    'jshint',
+    'connect'
+  ]);
 
   grunt.registerTask('test', 'Test the library', [
     'jshint',
