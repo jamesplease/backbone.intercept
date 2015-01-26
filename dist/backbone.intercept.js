@@ -1,4 +1,4 @@
-// Backbone.Intercept v0.3.1
+// Backbone.Intercept v0.3.2
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['backbone', 'underscore'], function(Backbone, _) {
@@ -18,7 +18,7 @@
 
   Backbone.Intercept = {
   
-    VERSION: '0.3.1',
+    VERSION: '0.3.2',
   
     rootSelector: 'body',
   
@@ -98,9 +98,13 @@
       // If we haven't been stopped yet, then we prevent the default action
       e.preventDefault();
   
+      // Get the computed pathname of the link, removing
+      // the leading slash. Regex required for IE8 support
+      var pathname = $link[0].pathname.replace(/^\//, '');
+  
       // Lastly we send off the information to the router
       if (!this.navigate) { return; }
-      this.navigate(href, navOptions);
+      this.navigate(pathname, navOptions);
     },
   
     _getAttr: function($el, name) {
