@@ -26,7 +26,7 @@ describe('When clicking a link', function() {
       it('should pass trigger:true to the share method', function() {
         expect(Backbone.Intercept.navigate)
           .to.have.been.calledOnce
-          .and.calledWithExactly('path/to/my-thing', {trigger:true});
+          .and.calledWithExactly('test/path/to/my-thing', {trigger:true});
       });
     });
 
@@ -34,11 +34,18 @@ describe('When clicking a link', function() {
       beforeEach(function() {
         var $link = $('<a href="/path/to/my-thing"></a>');
         this.setFixtures($link);
+        this.sinon.stub(Backbone.Intercept, 'navigate');
         $link.trigger(this.leftClick);
       });
 
       it('should intercept the link', function() {
         expect(this.leftClick.preventDefault).to.have.been.calledOnce;
+      });
+
+      it('should pass trigger:true to the share method', function() {
+        expect(Backbone.Intercept.navigate)
+          .to.have.been.calledOnce
+          .and.calledWithExactly('path/to/my-thing', {trigger:true});
       });
     });
 
@@ -213,7 +220,7 @@ describe('When clicking a link', function() {
       it('should pass trigger:true to the share method', function() {
         expect(Backbone.Intercept.navigate)
           .to.have.been.calledOnce
-          .and.calledWithExactly('link/to/my-page', {trigger:true});
+          .and.calledWithExactly('test/link/to/my-page', {trigger:true});
       });
     });
 
@@ -232,7 +239,7 @@ describe('When clicking a link', function() {
       it('should pass trigger:false to the share method', function() {
         expect(Backbone.Intercept.navigate)
           .to.have.been.calledOnce
-          .and.calledWithExactly('link/to/my-page', {trigger:false});
+          .and.calledWithExactly('test/link/to/my-page', {trigger:false});
       });
     });
 
@@ -251,7 +258,7 @@ describe('When clicking a link', function() {
       it('should pass trigger:false to the share method', function() {
         expect(Backbone.Intercept.navigate)
           .to.have.been.calledOnce
-          .and.calledWithExactly('link/to/my-page', {trigger:false});
+          .and.calledWithExactly('test/link/to/my-page', {trigger:false});
       });
     });
   });

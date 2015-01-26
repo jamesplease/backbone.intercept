@@ -80,9 +80,13 @@ Backbone.Intercept = {
     // If we haven't been stopped yet, then we prevent the default action
     e.preventDefault();
 
+    // Get the computed pathname of the link, removing
+    // the leading slash. Regex required for IE8 support
+    var pathname = $link[0].pathname.replace(/^\//, '');
+
     // Lastly we send off the information to the router
     if (!this.navigate) { return; }
-    this.navigate(href, navOptions);
+    this.navigate(pathname, navOptions);
   },
 
   _getAttr: function($el, name) {
