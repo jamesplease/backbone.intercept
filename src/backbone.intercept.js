@@ -7,7 +7,8 @@ Backbone.Intercept = {
   defaults: {
     trigger : true,
     links   : true,
-    forms   : true
+    forms   : true,
+    includeSearch: false
   },
 
   start: function(options) {
@@ -83,7 +84,9 @@ Backbone.Intercept = {
     // Get the computed pathname of the link, removing
     // the leading slash. Regex required for IE8 support
     var pathname = $link[0].pathname.replace(/^\//, '');
-
+    if (this.defaults.includeSearch && $link[0].search) {
+      pathname += $link[0].search;//add the query string
+    }
     // Lastly we send off the information to the router
     if (!this.navigate) { return; }
     this.navigate(pathname, navOptions);

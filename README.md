@@ -65,6 +65,7 @@ Backbone.Intercept depends on Underscore, Backbone and a jQuery-like API on the 
     - [Navigation](#navigation)
     - [Customizing the Behavior Per-Link](#customizing-the-behavior-per-link)
     - [Setting Global Link Trigger Behavior](#setting-global-link-trigger-behavior)
+    - [Setting Global includeSearch for intercepting also the queryString](#setting-global-includesearch-for-intercepting-also-the-querystring)
   - [Forms](#forms)
   - [Setting the Root Element of Backbone.Intercept](#setting-the-root-element-of-backboneintercept)
   - [When Not to Use Backbone.Intercept](#when-not-to-use-backboneintercept)
@@ -167,6 +168,16 @@ You can set the default trigger behavior by specifying it directly on the Backbo
 Backbone.Intercept.defaults.trigger = false;
 ```
 
+#### Setting Global includeSearch for intercepting also the queryString
+
+You can set the default includeSearch behavior by specifying it directly on the Backbone.Intercept `defaults` option
+the default is false to maintain backward compatibility.
+
+```js
+// Let's set the includeSearch setting to true
+Backbone.Intercept.defaults.includeSearch = true;
+```
+
 ### Forms
 
 Forms are much simpler than links. All forms are intercepted unless the `action` attribute has been specified. And unlike links, there's
@@ -212,9 +223,10 @@ A query selector for the root element of Intercept. Defaults to `'body'`.
 
 ##### `defaults`
 
-An object for the default values for the router. There are three properties in defaults, `links`, `forms`, and `trigger`,
-and all three are `true` out-of-the-box. The first two options determine if Intercept handles links and forms, respectively. The
+An object for the default values for the router. There are four properties in defaults, `links`, `forms`, `trigger` and `includeSearch`
+and all are `true` out-of-the-box except `includeSearch` . The first two options determine if Intercept handles links and forms, respectively. The
 `trigger` option determines if intercepted links pass `trigger:true` by default.
+`includeSearch` option determines if intercepted links pass also the queryString(search) and not only the pathname by default.
 
 The value of the `trigger` or `data-trigger` attribute on the anchor tag itself will always trump the value of the
 value of `trigger` in the `defaults` hash.
