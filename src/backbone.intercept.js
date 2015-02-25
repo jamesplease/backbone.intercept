@@ -45,8 +45,8 @@ Backbone.Intercept = {
   },
 
   _interceptLinks: function(e) {
-    // Only intercept left-clicks
-    if (e.which !== 1) { return; }
+    // Only intercept left-clicks, in IE8 e.which is always 0
+    if (e.which > 1) { return; }
     var $link = Backbone.$(e.currentTarget);
 
     // Get the href; stop processing if there isn't one
