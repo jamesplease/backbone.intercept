@@ -261,6 +261,25 @@ describe('When clicking a link', function() {
           .and.calledWithExactly('test/link/to/my-page', {trigger:false});
       });
     });
+    
+    describe('the link has search parameters', function() {
+      beforeEach(function() {
+        var $link = $('<a href="path/to/my-thing?page=1&limit=50"></a>');
+        this.setFixtures($link);
+        this.sinon.stub(Backbone.Intercept, 'navigate');
+        $link.trigger(this.leftClick);
+      });
+
+      it('should intercept the link', function() {
+        expect(this.leftClick.preventDefault).to.have.been.calledOnce;
+      });
+
+      it('should have the search parameters inside the link navigated to', function() {
+        expect(Backbone.Intercept.navigate)
+          .to.have.been.calledOnce
+          .and.calledWithExactly('test/path/to/my-thing?page=1&limit=50', {trigger:true});
+      });
+    });
   });
 
   describe('with a middle click', function() {
