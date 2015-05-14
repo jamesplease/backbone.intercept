@@ -82,7 +82,7 @@ Backbone.Intercept = {
 
     // Get the computed pathname of the link, removing
     // the leading slash. Regex required for IE8 support
-    var pathname = $link[0].pathname.replace(/^\//, '');
+    var pathname = $link[0].pathname.replace(/^\//, '') + $link[0].search;
 
     // Lastly we send off the information to the router
     if (!this.navigate) { return; }
