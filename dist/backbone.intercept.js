@@ -1,4 +1,4 @@
-// Backbone.Intercept v0.3.2
+// Backbone.Intercept v0.3.3
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['backbone', 'underscore'], function(Backbone, _) {
@@ -18,7 +18,7 @@
 
   Backbone.Intercept = {
   
-    VERSION: '0.3.2',
+    VERSION: '0.3.3',
   
     rootSelector: 'body',
   
@@ -100,7 +100,7 @@
   
       // Get the computed pathname of the link, removing
       // the leading slash. Regex required for IE8 support
-      var pathname = $link[0].pathname.replace(/^\//, '');
+      var pathname = $link[0].pathname.replace(/^\//, '') + $link[0].search;
   
       // Lastly we send off the information to the router
       if (!this.navigate) { return; }
