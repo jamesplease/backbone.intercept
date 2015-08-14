@@ -1,7 +1,3 @@
-### 0.3.4
-
-- Updated dependencies.
-
 ### [0.3.3](https://github.com/jmeas/backbone.intercept/releases/tag/v0.3.3)
 
 - **Bugfix:** Query strings are no longer stripped from intercepted links.
