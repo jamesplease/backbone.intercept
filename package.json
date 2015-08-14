@@ -1,6 +1,6 @@
 {
   "name": "backbone.intercept",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Automatically manage link clicks and form submissions within Backbone applications.",
   "main": "dist/backbone.intercept.js",
   "scripts": {
@@ -34,8 +34,8 @@
   },
   "homepage": "https://github.com/jmeas/backbone.intercept",
   "dependencies": {
-    "backbone": ">=0.9.9 <=1.1.2",
-    "underscore": "<=1.7.0"
+    "backbone": ">=0.9.9 <=1.2.1",
+    "underscore": ">=1.7.0"
   },
   "devDependencies": {
     "backbone.radio": "^0.6.0",
