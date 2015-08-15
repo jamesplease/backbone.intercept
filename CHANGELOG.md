@@ -1,3 +1,7 @@
+### [0.4.0](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.0)
+
+- Updated dependencies to support the latest Backbone and Underscore.
+
 ### [0.3.3](https://github.com/jmeas/backbone.intercept/releases/tag/v0.3.3)
 
 - **Bugfix:** Query strings are no longer stripped from intercepted links.
