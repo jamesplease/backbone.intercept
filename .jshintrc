@@ -65,7 +65,6 @@
     "Backbone": true,
     "_": true,
     "$": true,
-    "Radio": true,
     "require": true,
     "module": true,
     "define": true,
