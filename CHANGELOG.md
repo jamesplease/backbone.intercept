@@ -1,3 +1,7 @@
+### [0.4.2](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.2)
+
+- Updated Bower to support the latest Backbone, too!
+
 ### [0.4.1](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.1)
 
 - Updated dependencies to support the latest Backbone.

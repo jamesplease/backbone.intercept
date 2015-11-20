@@ -1,7 +1,7 @@
 {
   "name": "backbone.intercept",
   "main": "dist/backbone.intercept.js",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "homepage": "https://github.com/jmeas/backbone.intercept",
   "authors": [
     "Jmeas <jellyes2@gmail.com>"
