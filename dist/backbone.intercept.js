@@ -1,4 +1,4 @@
-// Backbone.Intercept v0.4.0
+// Backbone.Intercept v0.4.1
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['backbone', 'underscore'], function(Backbone, _) {
@@ -18,7 +18,7 @@
 
   Backbone.Intercept = {
   
-    VERSION: '0.4.0',
+    VERSION: '0.4.1',
   
     rootSelector: 'body',
   

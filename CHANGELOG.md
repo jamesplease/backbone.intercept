@@ -1,3 +1,7 @@
+### [0.4.1](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.1)
+
+- Updated dependencies to support the latest Backbone.
+
 ### [0.4.0](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.0)
 
 - Updated dependencies to support the latest Backbone and Underscore.
