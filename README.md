@@ -1,3 +1,5 @@
+> I'm looking for maintainer(s) of this lib. If you're interested, [let me know](https://twitter.com/jmeaspls)! I'd be happy to help you get set up :v:
+
 # Backbone.Intercept
 
 [![Travis Build Status](http://img.shields.io/travis/jmeas/backbone.intercept.svg?style=flat)](https://travis-ci.org/jmeas/backbone.intercept)
