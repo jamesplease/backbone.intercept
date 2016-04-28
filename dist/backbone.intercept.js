@@ -78,6 +78,12 @@
         return;
       }
   
+      // If the Ctrl key is held, we want to open in a new tab.
+      bypass = e.ctrlKey;
+      if (bypass) {
+        return;
+      }
+  
       // The options we pass along to navigate
       var navOptions = {
         trigger: this.defaults.trigger
