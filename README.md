@@ -200,6 +200,8 @@ every project is like this. It's not uncommon for there to be Backbone component
 not Backbone. In those situations it is likely a better choice to manage link clicks and form
 submissions on a per-view basis.
 
+This library is only meant to act as a proxy between the DOM and your JS, and nothing more, if you want to be able to cancel routes, this library won't help you with that, you'd need to handle that in your router.
+
 ## API
 
 ### Properties
