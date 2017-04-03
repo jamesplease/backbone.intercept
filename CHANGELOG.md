@@ -1,3 +1,7 @@
+### [0.4.4](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.4)
+
+- Adds control + click bypass
+
 ### [0.4.3](https://github.com/jmeas/backbone.intercept/releases/tag/0.4.3)
 
 - Updated dependencies to support the latest Backbone.
