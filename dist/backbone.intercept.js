@@ -1,4 +1,4 @@
-// Backbone.Intercept v0.4.4
+// Backbone.Intercept v0.4.5
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['backbone', 'underscore'], function(Backbone, _) {
@@ -18,7 +18,7 @@
 
   Backbone.Intercept = {
   
-    VERSION: '0.4.4',
+    VERSION: '0.4.5',
   
     rootSelector: 'body',
   
@@ -78,9 +78,9 @@
         return;
       }
   
-      // If the Ctrl key is held, we want to open in a new tab.
-      bypass = e.ctrlKey;
-      if (bypass) {
+      // If the platform’s modifier key is held, we want to open in a new tab.
+      var platform = navigator.platform.toLowerCase();
+      if((~platform.indexOf('win') && e.ctrlKey) || (~platform.indexOf('mac') && e.metaKey)) {
         return;
       }
   
