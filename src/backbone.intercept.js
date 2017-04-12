@@ -60,9 +60,9 @@ Backbone.Intercept = {
       return;
     }
 
-    // If the Ctrl key is held, we want to open in a new tab.
-    bypass = e.ctrlKey;
-    if (bypass) {
+    // If the platform’s modifier key is held, we want to open in a new tab.
+    var platform = navigator.platform.toLowerCase();
+    if((~platform.indexOf('win') && e.ctrlKey) || (~platform.indexOf('mac') && e.metaKey)) {
       return;
     }
 
