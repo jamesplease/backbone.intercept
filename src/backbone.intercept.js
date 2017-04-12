@@ -61,8 +61,8 @@ Backbone.Intercept = {
     }
 
     // If the platform’s modifier key is held, we want to open in a new tab.
-    var platform = navigator.platform.toLowerCase();
-    if ((platform.indexOf('win') > -1 && e.ctrlKey) || (platform.indexOf('mac') > -1 && e.metaKey)) {
+    var isMac = navigator.platform.toLowerCase().indexOf('mac') > -1;
+    if (!isMac && e.ctrlKey) || (isMac && e.metaKey)) {
       return;
     }
 
